@@ -1,13 +1,17 @@
 package io.acssuplb.github.friendster;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.Toast;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -18,14 +22,34 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
+        Button add_friend_btn = (Button) findViewById(R.id.add_friend_btn);
+        add_friend_btn.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                DBHandler db = new DBHandler(MainActivity.this);
+                EditText add_name = (EditText)findViewById(R.id.add_name);
+                Friend friend = new Friend(0, add_name.getText().toString());
+                db.addFriend(friend);
+                Toast.makeText(getApplicationContext(),
+                        "Successfully added " + add_name.getText().toString(), Toast.LENGTH_LONG).show();
+
             }
         });
+
+        Button view_friends_btn = (Button) findViewById(R.id.view_friends_btn);
+        view_friends_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DBHandler db = new DBHandler(MainActivity.this);
+                List<Friend> friendList = db.getAllFriends();
+
+                for (Friend friend : friendList) {
+                    String log = "Id: " + friend.getId() + " ,Name: " + friend.getName();
+                    Toast.makeText(getApplicationContext(), log, Toast.LENGTH_LONG).show();
+                }
+            }
+        });
+
     }
 
     @Override
