@@ -1,5 +1,6 @@
 package io.acssuplb.github.friendster;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -40,13 +41,15 @@ public class MainActivity extends AppCompatActivity {
         view_friends_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                DBHandler db = new DBHandler(MainActivity.this);
-                List<Friend> friendList = db.getAllFriends();
-
-                for (Friend friend : friendList) {
-                    String log = "Id: " + friend.getId() + " ,Name: " + friend.getName();
-                    Toast.makeText(getApplicationContext(), log, Toast.LENGTH_LONG).show();
-                }
+//                DBHandler db = new DBHandler(MainActivity.this);
+//                List<Friend> friendList = db.getAllFriends();
+//
+//                for (Friend friend : friendList) {
+//                    String log = "Id: " + friend.getId() + " ,Name: " + friend.getName();
+//                    Toast.makeText(getApplicationContext(), log, Toast.LENGTH_LONG).show();
+//                }
+                Intent i = new Intent(MainActivity.this,ViewFriends.class);
+                startActivity(i);
             }
         });
 

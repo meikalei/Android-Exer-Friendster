@@ -14,9 +14,11 @@ public class DBHandler extends SQLiteOpenHelper{
     private static final String TABLE_FRIENDS = "friends";
     private static final String KEY_ID = "id";
     private static final String KEY_NAME = "name";
+    private Context mContext;
 
     public DBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+        this.mContext = context;
     }
     @Override
     public void onCreate(SQLiteDatabase db) {
@@ -35,6 +37,27 @@ public class DBHandler extends SQLiteOpenHelper{
         ContentValues values = new ContentValues();
         values.put(KEY_NAME, friend.getName());
         db.insert(TABLE_FRIENDS, null, values);
+        db.close();
+    }
+
+    public void editFriend(String oldName,String newName) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "UPDATE " + TABLE_FRIENDS +
+                " SET " + KEY_NAME + "=?, " +
+                " WHERE " + KEY_NAME + "=?";
+        String[] args = {newName, oldName};
+
+        db.execSQL(query, args);
+        db.close();
+    }
+
+    public void removeFriend(String name) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        String query = "DELETE FROM " + TABLE_FRIENDS +
+                " WHERE " + KEY_NAME + "=?";
+        String[] args = {name};
+
+        db.execSQL(query, args);
         db.close();
     }
 
