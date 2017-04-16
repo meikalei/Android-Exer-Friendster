@@ -10,10 +10,12 @@ import java.util.ArrayList;
 
 import io.acssuplb.github.friendster.adapter.FriendListAdapter;
 
+import static android.nfc.NfcAdapter.EXTRA_ID;
+
 public class ViewFriends extends AppCompatActivity implements FriendListAdapter.ItemClickCallback {
     private static final String BUNDLE_EXTRAS = "BUNDLE_EXTRAS";
     private static final String EXTRA_NAME = "EXTRA_NAME";
-
+    private static final String EXTRA_ID = "EXTRA_ID";
     private RecyclerView recView;
     private FriendListAdapter flAdapter;
     private DBHandler db;
@@ -44,6 +46,7 @@ public class ViewFriends extends AppCompatActivity implements FriendListAdapter.
 
         Bundle extras = new Bundle();
         extras.putString(EXTRA_NAME, item.getName());
+        extras.putInt(EXTRA_ID, item.getId());
         in.putExtra(BUNDLE_EXTRAS, extras);
 
         startActivity(in);

@@ -5,6 +5,8 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,22 +42,24 @@ public class DBHandler extends SQLiteOpenHelper{
         db.close();
     }
 
-    public void editFriend(String oldName,String newName) {
+    public void editFriend(int id, String oldName,String newName) {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "UPDATE " + TABLE_FRIENDS +
-                " SET " + KEY_NAME + "=?, " +
-                " WHERE " + KEY_NAME + "=?";
-        String[] args = {newName, oldName};
+                " SET " + KEY_NAME + "=? " +
+                " WHERE " + KEY_NAME + "=?" + " AND "
+                + KEY_ID + "=?";
+        Object[] args = {newName, oldName, id};
 
         db.execSQL(query, args);
         db.close();
     }
 
-    public void removeFriend(String name) {
+    public void removeFriend(int id, String name) {
         SQLiteDatabase db = this.getWritableDatabase();
         String query = "DELETE FROM " + TABLE_FRIENDS +
-                " WHERE " + KEY_NAME + "=?";
-        String[] args = {name};
+                " WHERE " + KEY_NAME + "=?" + " AND "
+                + KEY_ID + "=?";
+        Object[] args = {name, id};
 
         db.execSQL(query, args);
         db.close();

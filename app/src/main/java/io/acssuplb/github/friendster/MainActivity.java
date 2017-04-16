@@ -29,11 +29,17 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 DBHandler db = new DBHandler(MainActivity.this);
                 EditText add_name = (EditText)findViewById(R.id.add_name);
-                Friend friend = new Friend(0, add_name.getText().toString());
-                db.addFriend(friend);
-                Toast.makeText(getApplicationContext(),
-                        "Successfully added " + add_name.getText().toString(), Toast.LENGTH_LONG).show();
-
+                if(!add_name.getText().toString().equals("")){
+                    Friend friend = new Friend(0, add_name.getText().toString());
+                    db.addFriend(friend);
+                    Toast.makeText(getApplicationContext(),
+                            "Successfully added " + add_name.getText().toString(), Toast.LENGTH_LONG).show();
+                    add_name.getText().clear();
+                }
+                else{
+                    Toast.makeText(getApplicationContext(),
+                            "Text field is empty", Toast.LENGTH_LONG).show();
+                }
             }
         });
 
