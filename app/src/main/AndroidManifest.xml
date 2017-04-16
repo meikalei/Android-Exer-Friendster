@@ -19,7 +19,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ViewFriends" />
-        <activity android:name=".ViewProfile"/>
+        <activity
+            android:name=".ViewFriends"
+            android:label="Friends"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".ViewProfile"
+            android:label="Profile"
+            android:parentActivityName=".ViewFriends"/>
     </application>
 </manifest>

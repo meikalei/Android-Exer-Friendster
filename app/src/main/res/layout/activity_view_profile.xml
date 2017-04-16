@@ -34,10 +34,19 @@
         android:id="@+id/btn_remove"
         android:layout_width="164dp"
         android:layout_height="47dp"
+        android:layout_below="@+id/btn_edit"
+        android:layout_centerHorizontal="true"
         android:text="Remove"
         tools:layout_editor_absoluteX="110dp"
         tools:layout_editor_absoluteY="127dp"
-        tools:text="Remove"
-        android:layout_below="@+id/btn_edit"
-        android:layout_centerHorizontal="true" />
+        tools:text="Remove" />
+
+    <Button
+        android:id="@+id/btn_home"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_remove"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="60dp"
+        android:text="Home" />
 </RelativeLayout>

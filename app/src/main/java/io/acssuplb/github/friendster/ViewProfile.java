@@ -21,12 +21,23 @@ public class ViewProfile extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_profile);
 
-        final Button edit_friend = (Button) this.findViewById(R.id.btn_edit);
-        final Button remove_friend = (Button) this.findViewById(R.id.btn_remove);
-        final EditText name_field = (EditText) this.findViewById(R.id.lbl_name);
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+
+        final Button edit_friend = (Button)this.findViewById(R.id.btn_edit);
+        final Button remove_friend = (Button)this.findViewById(R.id.btn_remove);
+        final Button home = (Button)this.findViewById(R.id.btn_home);
+        final EditText name_field = (EditText)this.findViewById(R.id.lbl_name);
         final Bundle extras = getIntent().getBundleExtra(BUNDLE_EXTRAS);
 
         ((EditText)findViewById(R.id.lbl_name)).setText(extras.getString(EXTRA_NAME));
+
+        home.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ViewProfile.this, MainActivity.class);
+                startActivity(intent);
+            }
+        });
 
         remove_friend.setOnClickListener(new View.OnClickListener() {
             @Override

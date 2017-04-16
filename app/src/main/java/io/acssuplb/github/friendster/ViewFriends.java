@@ -25,6 +25,7 @@ public class ViewFriends extends AppCompatActivity implements FriendListAdapter.
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_view_friends);
+        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
 
         recView = (RecyclerView)findViewById(R.id.f_list);
         recView.setLayoutManager(new LinearLayoutManager(this));
