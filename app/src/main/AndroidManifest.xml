@@ -20,7 +20,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".ViewFriends" />
-        <activity android:name=".ViewProfile"></activity>
+        <activity android:name=".ViewProfile"/>
     </application>
-
 </manifest>
